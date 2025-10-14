@@ -142,11 +142,14 @@ export default class InputField extends HTMLElement {
     this.view.value = this.getAttribute('value') || '';
 
     this.type = this.getAttribute('type') as EInputType;
-    this.inputType = this.type === EInputType.PHONE ? EInputType.TEXT : this.type;
+    this.inputType =
+      this.type === EInputType.PHONE || EInputType.NUMBER ? EInputType.TEXT : this.type;
 
     if (this.inputElement) {
       this.inputElement.placeholder = this.getAttribute('placeholder') || '';
       this.inputElement.type = this.inputType;
+      if (this.type === EInputType.NUMBER) this.inputElement.maxLength = 4;
+      else this.inputElement.maxLength = 255;
 
       this.inputElement.addEventListener('input', this.inputHandler);
       this.inputElement.addEventListener('blur', this.setValidationDisplay);

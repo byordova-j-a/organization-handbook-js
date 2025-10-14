@@ -20,7 +20,7 @@ export const createStore = (handler: ProxyHandler<TStore>) => {
     getTotalItems: () => storeState.totalItems,
 
     fetchOrganizationList(page: number, sortParam: TSortParams, filterValue: string) {
-      const regex = new RegExp(filterValue.replace(/\\/g, '\\\\'), 'i');
+      const regex = new RegExp(filterValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
 
       const { type, order } = sortParam;
 

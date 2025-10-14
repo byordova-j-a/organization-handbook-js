@@ -33,13 +33,16 @@ const config = {
         ],
       },
       {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-      // },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
